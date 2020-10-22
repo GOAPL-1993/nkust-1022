@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\http\Controllers\UploadImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function(){
-    return view('uploadindex');
-});
+Route::get('/', [UploadImageController::class, 'index']);
+Route::post('/upload/', [UploadImageController::class, 'upload']);
