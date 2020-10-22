@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\UploadImageController;
+use App\http\Controllers\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +21,9 @@ use App\http\Controllers\UploadImageController;
 
 Route::get('/', [UploadImageController::class, 'index']);
 Route::post('/upload/', [UploadImageController::class, 'upload']);
+Route::get('login/github', [LoginController::class, 'redirectToProvider']);
+Route::get('login/github/callback', [LoginController::class, 'handleProviderCallback']);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
